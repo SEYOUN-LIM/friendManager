@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Friend } from '../model/friend';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 const friendList: Friend[] = [
   { id: 1, name: 'Seyoun', address: '33 Worthy Street, Ilam' },
@@ -13,8 +15,9 @@ const friendList: Friend[] = [
 })
 export class DataService {
   friend: Friend;
+  address: string;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getFriends() {
     return friendList;
@@ -24,9 +27,14 @@ export class DataService {
     friendList.map((x) => {
       if (x.id == id) {
         this.friend = x;
+        this.address = x.address;
       }
     })
 
     return this.friend;
+  }
+
+  addCoordinate(address) {
+    return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURI(address) + '&key=' + environment.googleApiKey)
   }
 }

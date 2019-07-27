@@ -6,7 +6,11 @@
     </mat-card-header>
 
     <mat-card-content>
-        Map goes here
+        <agm-map [zoom]="13" [latitude]="lat" [longitude]="lng">
+            <agm-marker 
+            [latitude]="lat" [longitude]="lng"
+            [animation]="'BOUNCE'"></agm-marker>
+        </agm-map>
     </mat-card-content>
 
     <mat-card-actions>

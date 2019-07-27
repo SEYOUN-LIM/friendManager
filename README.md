@@ -17,3 +17,6 @@ git URL: 'https://github.com/SEYOUN-LIM/friendManager'
 9. adding creating item function using stepper
 10. moving mockup data to new service file
 11. decorating mockup detail page, add get function to service
+12. add google map to detail page using agm/core lib, used angular life cycle to fetch additional information.
+-- I fetched the coordinate using google place api and geometry information with given address
+-- ref : 'https://angular-maps.com/guides/getting-started/'
