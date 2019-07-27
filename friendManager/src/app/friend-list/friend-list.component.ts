@@ -46,4 +46,13 @@ export class FriendListComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
+  removeSelected() {
+    this.selection.selected.forEach(item => {
+      let index: number = this.dataSource.data.findIndex(d => d === item);
+      this.dataSource.data.splice(index, 1)
+      this.dataSource = new MatTableDataSource<Friend>(this.dataSource.data);
+    });
+    this.selection = new SelectionModel<Friend>(true, []);
+  }
+
 }
