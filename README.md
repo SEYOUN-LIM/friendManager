@@ -14,4 +14,4 @@ git URL: 'https://github.com/SEYOUN-LIM/friendManager'
 6. decorating navigation components and routing
 7. MockUp friend list page, created friend model
 -- commit
-8. adding more functions to friend list table
+8. adding more functions to friend list table ( removing seleted function, filter, pagination)

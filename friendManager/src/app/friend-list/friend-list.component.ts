@@ -1,6 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { Friend } from '../model/friend';
 
 const friendList: Friend[] = [
@@ -25,7 +26,10 @@ export class FriendListComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource<Friend>(friendList);
+    this.dataSource.paginator = this.paginator;
   }
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -53,6 +57,10 @@ export class FriendListComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Friend>(this.dataSource.data);
     });
     this.selection = new SelectionModel<Friend>(true, []);
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }
