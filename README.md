@@ -17,3 +17,4 @@ git URL: 'https://github.com/SEYOUN-LIM/friendManager'
 8. adding more functions to friend list table ( removing seleted function, filter, pagination)
 -- commit
 9. adding creating item function using stepper
+10. moving mockup data to new service file

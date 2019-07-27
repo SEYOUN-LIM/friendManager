@@ -4,13 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Friend } from '../model/friend';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-const friendList: Friend[] = [
-  { id: 1, name: 'Seyoun', address: '33 Worthy Street, Ilam' },
-  { id: 2, name: 'Luke', address: '1 Cardinal Drive, Hilmorton' },
-  { id: 3, name: 'Steve', address: '1 Warren Cres, Hillmorton' },
-  { id: 4, name: 'Jason', address: 'Rolleston' }
-];
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-friend-list',
@@ -27,10 +21,11 @@ export class FriendListComponent implements OnInit {
   addressFormGroup: FormGroup;
   showAdd = false;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder,
+    private data: DataService) { }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource<Friend>(friendList);
+    this.dataSource = new MatTableDataSource<Friend>(this.data.getFriends());
     this.dataSource.paginator = this.paginator;
 
     this.nameFormGroup = this._formBuilder.group({
