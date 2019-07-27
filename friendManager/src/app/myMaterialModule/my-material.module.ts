@@ -9,11 +9,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
     exports: [MatButtonModule, MatToolbarModule, MatGridListModule, MatTableModule,
-        MatCheckboxModule,MatPaginatorModule,MatFormFieldModule, MatInputModule,MatStepperModule,],
+        MatCheckboxModule, MatPaginatorModule, MatFormFieldModule, MatInputModule,
+        MatStepperModule, MatCardModule,],
     imports: [MatButtonModule, MatToolbarModule, MatGridListModule, MatTableModule,
-        MatCheckboxModule,MatPaginatorModule,MatFormFieldModule, MatInputModule,MatStepperModule,],
+        MatCheckboxModule, MatPaginatorModule, MatFormFieldModule, MatInputModule,
+        MatStepperModule, MatCardModule,],
 })
 export class MyMaterialModule { }

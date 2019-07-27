@@ -13,8 +13,7 @@ git URL: 'https://github.com/SEYOUN-LIM/friendManager'
 5. generating components
 6. decorating navigation components and routing
 7. MockUp friend list page, created friend model
--- commit
 8. adding more functions to friend list table ( removing seleted function, filter, pagination)
--- commit
 9. adding creating item function using stepper
 10. moving mockup data to new service file
+11. decorating mockup detail page, add get function to service

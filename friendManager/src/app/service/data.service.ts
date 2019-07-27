@@ -19,4 +19,14 @@ export class DataService {
   getFriends() {
     return friendList;
   }
+
+  getFriend(id: number): Friend {
+    friendList.map((x) => {
+      if (x.id == id) {
+        this.friend = x;
+      }
+    })
+
+    return this.friend;
+  }
 }
