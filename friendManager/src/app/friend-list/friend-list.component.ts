@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Friend } from '../model/friend';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 const friendList: Friend[] = [
   { id: 1, name: 'Seyoun', address: '33 Worthy Street, Ilam' },
@@ -21,12 +22,23 @@ export class FriendListComponent implements OnInit {
   displayedColumns: string[] = ['select', 'id', 'name', 'address', 'detail'];
   dataSource = new MatTableDataSource<Friend>();
   selection = new SelectionModel<Friend>(true, []);
+  isLinear = false;
+  nameFormGroup: FormGroup;
+  addressFormGroup: FormGroup;
+  showAdd = false;
 
-  constructor() { }
+  constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource<Friend>(friendList);
     this.dataSource.paginator = this.paginator;
+
+    this.nameFormGroup = this._formBuilder.group({
+      nameCtrl: ['', Validators.required]
+    });
+    this.addressFormGroup = this._formBuilder.group({
+      addressCtrl: ['', Validators.required]
+    })
   }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -61,6 +73,37 @@ export class FriendListComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  addFriend() {
+    this.showAdd = true;
+    this.isLinear = false;
+  }
+
+  canceled(stepper) {
+    stepper.reset();
+    this.showAdd = false;
+  }
+
+  saveFriend(stepper) {
+    if(this.nameFormGroup.value.nameCtrl==''||this.addressFormGroup.value.addressCtrl=='') {
+      return;
+    }
+
+    const data = this.dataSource.data;
+    data.sort(x => x.id);
+    var id = data[data.length - 1].id + 1;
+    var friend = {
+      id: id,
+      name: this.nameFormGroup.value.nameCtrl,
+      address: this.addressFormGroup.value.addressCtrl
+    }
+
+    data.push(friend);
+
+    this.dataSource.data = data;
+
+    this.canceled(stepper);
   }
 
 }

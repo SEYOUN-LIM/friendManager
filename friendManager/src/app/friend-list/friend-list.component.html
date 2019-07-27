@@ -54,5 +54,44 @@
 
 <br>
 
+<div class="buttonRow">
+    <button mat-raised-button color="primary" (click)="addFriend()">Add</button>
+    <button mat-raised-button color="accent" (click)="removeSelected()">Remove Selected</button>
+</div>
 
-<button mat-raised-button color="accent" (click)="removeSelected()">Remove Selected</button>
+<div *ngIf="showAdd">
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="nameFormGroup">
+            <form [formGroup]="nameFormGroup">
+                <ng-template matStepLabel>Fill out name</ng-template>
+                <mat-form-field>
+                    <input matInput placeholder="Name" formControlName="nameCtrl" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="addressFormGroup">
+            <form [formGroup]="addressFormGroup">
+                <ng-template matStepLabel>Fill out address</ng-template>
+                <mat-form-field>
+                    <input matInput placeholder="Address"
+                        formControlName="addressCtrl" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Confirm</ng-template>
+            Confirm
+            <div>
+                <button mat-button (click)="saveFriend(stepper)">Save</button>
+                <button mat-button (click)="canceled(stepper)">Cancel</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>
