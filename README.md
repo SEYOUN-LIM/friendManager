@@ -10,3 +10,6 @@ git URL: 'https://github.com/SEYOUN-LIM/friendManager'
 4. install Angular Material and module separation 
 -- ref : 'https://material.angular.io/guide/getting-started'
 -- commit - fresh 8.1.1 angular project with Material implemented
+5. generating components
+6. decorating navigation components and routing
+7. MockUp friend list page, created friend model
