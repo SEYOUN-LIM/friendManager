@@ -5,10 +5,11 @@ import { AboutComponent } from './about/about.component';
 import { FriendDetailComponent } from './friend-detail/friend-detail.component';
 
 const routes: Routes = [
-  { path: '', component: FriendListComponent },
   { path: 'friends', component: FriendListComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'detail/:id', component: FriendDetailComponent}
+  { path: 'detail/:id', component: FriendDetailComponent},
+  { path: '', redirectTo: '/friends', pathMatch: 'full' },
+  { path: '**', component: FriendListComponent }
 ];
 
 @NgModule({

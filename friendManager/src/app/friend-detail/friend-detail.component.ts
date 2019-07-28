@@ -27,8 +27,8 @@ export class FriendDetailComponent implements OnInit {
 
   ngAfterContentInit() {
     this.data.addCoordinate(this.friend.address).subscribe(x => {
-      this.lat = x.results[0].geometry.location.lat;
-      this.lng = x.results[0].geometry.location.lng;
+      this.lat = x['results'][0].geometry.location.lat;
+      this.lng = x['results'][0].geometry.location.lng;
     });
   }
 
