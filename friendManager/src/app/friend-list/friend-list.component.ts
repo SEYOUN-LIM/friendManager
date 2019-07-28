@@ -5,11 +5,32 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Friend } from '../model/friend';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../service/data.service';
+import { trigger, style, transition, animate, query } from '@angular/animations';
 
 @Component({
   selector: 'app-friend-list',
   templateUrl: './friend-list.component.html',
-  styleUrls: ['./friend-list.component.scss']
+  styleUrls: ['./friend-list.component.scss'],
+  animations: [
+    trigger('myAni', [
+      transition('* <=> *', [
+        query(
+          '.mat-elevation-z8',
+          [
+            style({ opacity: 0, transform: 'translateX(5px)' }),
+            animate(
+              '550ms ease-out',
+              style({ opacity: 1, transform: 'translateX(0px)' })
+            )
+          ],
+          { optional: true }
+        ),
+        query(':leave', animate('50ms', style({ opacity: 0 })), {
+          optional: true
+        })
+      ])
+    ])
+  ]
 })
 export class FriendListComponent implements OnInit {
 
@@ -81,7 +102,7 @@ export class FriendListComponent implements OnInit {
   }
 
   saveFriend(stepper) {
-    if(this.nameFormGroup.value.nameCtrl==''||this.addressFormGroup.value.addressCtrl=='') {
+    if (this.nameFormGroup.value.nameCtrl == '' || this.addressFormGroup.value.addressCtrl == '') {
       return;
     }
 
@@ -101,7 +122,7 @@ export class FriendListComponent implements OnInit {
     this.canceled(stepper);
   }
 
-  onAutocompleteSelected(e){
+  onAutocompleteSelected(e) {
     this.addressFormGroup.value.addressCtrl = e.formatted_address
   }
 

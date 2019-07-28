@@ -60,3 +60,6 @@ At command line interface, Run `CD .\friendManager\` -> `npm i` -> `ng serve`, N
 13. add google address autocomplete to creating new friend's address input field
  continu implementing 3rd party libs, User experience
  ref : 'https://www.npmjs.com/package/@angular-material-extensions/google-maps-autocomplete#installation'
+
+ 14. adding animations
+  helping User experience
