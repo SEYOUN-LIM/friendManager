@@ -76,7 +76,8 @@
             <form [formGroup]="addressFormGroup">
                 <ng-template matStepLabel>Fill out address</ng-template>
                 <mat-form-field>
-                    <input matInput placeholder="Address"
+                    <input matInput matGoogleMapsAutocomplete [country]="nz"
+                        (onAutocompleteSelected)="onAutocompleteSelected($event)" placeholder="Address"
                         formControlName="addressCtrl" required>
                 </mat-form-field>
                 <div>

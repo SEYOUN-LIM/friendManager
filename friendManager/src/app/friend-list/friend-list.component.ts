@@ -101,4 +101,8 @@ export class FriendListComponent implements OnInit {
     this.canceled(stepper);
   }
 
+  onAutocompleteSelected(e){
+    this.addressFormGroup.value.addressCtrl = e.formatted_address
+  }
+
 }
